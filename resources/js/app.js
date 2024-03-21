@@ -1,4 +1,3 @@
 /*import './bootstrap';*/
-import { Tooltip } from 'tw-elements';
-
-const myTooltip = new Tooltip(document.getElementById('my-tooltip'));
+import { Tooltip, Collapse, Ripple, Carousel, initTWE } from 'tw-elements';
+initTWE({ Collapse, Ripple, Carousel});
