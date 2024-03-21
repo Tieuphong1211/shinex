@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>@yield('subTitle')Shinex</title>
-
+    <meta name="robots" content="noindex, nofollow" />
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>

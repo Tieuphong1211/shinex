@@ -103,9 +103,9 @@ class ProductController extends Controller
 <p><strong>4. C&aacute;ch d&ugrave;ng:</strong></p>
 <p>Thoa đều sản phẩm sau khi l&agrave;m sạch da v&agrave;o buổi tối, tr&aacute;nh v&ugrave;ng mắt, m&aacute;t xa đến khi sản phẩm được thẩm thấu ho&agrave;n to&agrave;n.</p>'];
                 break;
-            case 'smoothing-balance-repair-cream':
+            case 'soothing-balance-repair-cream':
                 $product = (object)[
-                    'name' => 'SHINEX - Smoothing balance repair cream',
+                    'name' => 'SHINEX - Soothing balance repair cream',
                     'images' => [
                         'images/products/image_1_1.jpg',
                         'images/products/image_1_2.jpg',
@@ -158,7 +158,7 @@ class ProductController extends Controller
 <p>Thoa đều sản phẩm sau khi l&agrave;m sạch da v&agrave;o buổi tối, tr&aacute;nh v&ugrave;ng mắt, m&aacute;t xa đến khi sản phẩm được thẩm thấu ho&agrave;n to&agrave;n.</p>'
                 ];
                 break;
-            case 'serum-smoothing-and-restoring-essential-oils':
+            case 'soothing-and-restoring-essential-oils':
                 $product = (object)[
                     'name' => 'SHINEX - Serum smoothing and restoring essential oils',
                     'images' => [
