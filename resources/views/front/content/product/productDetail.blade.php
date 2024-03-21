@@ -1,4 +1,7 @@
 @extends('layout.mainLayout')
+@section('subTitle')
+    {{$product->name}} |
+@endsection
 @section('content')
     <div class="w-full grid grid-cols-2 gap-8 py-4 px-8">
         <div class="col-span-1">
