@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>@yield('subTitle')Shinex</title>
     <meta name="robots" content="noindex, nofollow" />
+
+
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
 </head>
@@ -15,6 +16,7 @@
         <div class="container px-36 mt-8 w-full">
             @yield('content')
         </div>
+        @include('partial.frontFooter')
     </div>
 </body>
 </html>
