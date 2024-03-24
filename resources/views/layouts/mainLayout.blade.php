@@ -13,9 +13,9 @@
 <body>
     <div class="w-full">
         @include('partial.frontHeader')
-        <div class="container px-36 mt-8 w-full">
+      {{--  <div class="container px-36 mt-8 w-full">--}}
             @yield('content')
-        </div>
+        {{--</div>--}}
         @include('partial.frontFooter')
     </div>
 </body>
