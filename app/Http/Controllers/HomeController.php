@@ -1,28 +1,32 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+
+    public function index(): View|Application|Factory
     {
-        $this->middleware('auth');
+        return view('homepage', ["page"=>'homepage']);
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    public function gallery(): View|Application|Factory
     {
-        return view('home');
+        return view('front.content.gallery', ["page"=>'gallery']);
     }
+
+    public function contact(): View|Application|Factory
+    {
+        return view('front.content.contact', ["page"=>'contact']);
+    }
+    public function about(): View|Application|Factory
+    {
+        return view('front.content.about', ["page"=>'about']);
+    }
+
+
+
 }

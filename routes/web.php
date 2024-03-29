@@ -16,9 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('homepage');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('homepage');
+Route::get('/gallery', [App\Http\Controllers\HomeController::class, 'gallery'])->name('gallery');
+Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
+Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
 
 
 Route::middleware('guest:admin')->prefix('admin')->group( function () {
@@ -45,7 +46,6 @@ Route::middleware('auth:admin')->prefix('admin')->group( function () {
         Route::get('/edit/{id}', [AdminProductController::class,'edit'])->name('admin.product.edit');
         Route::post('/edit/{id}', [AdminProductController::class,'update'])->name('admin.product.update');
         Route::get('/delete/{id}', [AdminProductController::class,'destroy'])->name('admin.product.delete');
-
     });
 });
 
@@ -54,5 +54,4 @@ Route::middleware('auth:admin')->prefix('admin')->group( function () {
 
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-/*Route::get('/{slug}',[ProductController::class, 'detail'])->name('product.detail');*/
+Route::get('/{slug}',[ProductController::class, 'detail'])->name('product.detail');

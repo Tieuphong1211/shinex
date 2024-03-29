@@ -1,52 +1,99 @@
-<div class="bg-[#313035]  text-[#999999] ">
-    <div class="w-full sm:px-16 footer">
-        <div class="flex justify-center">
-            <div class="grid lg:grid-cols-3 gap-5 xl:gap-20 xl:justify-center 2xl:w-[65%] ">
-                <div class="px-3 text-base pt-12">
-                    <a href="#"><img class="w-[25%] lg:w-[50%]" src="{{asset(Config::get('website.logo'))}}" alt=""></a>
-                    <p class="py-4">{{Config::get('website.slogan')}}</p>
-                    <i class="fa-solid fa-phone pb-3"></i><span class="px-3">{{Config::get('website.phone')}}</span><br>
-                    <i class="fa-solid fa-envelope"></i> <span class="px-3">{{Config::get('website.email')}}</span>
+<!-- footer -->
+<footer class="footer-w3ls py-5">
+    <div class="container py-sm-4">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 agileinfo_footer_grid">
+                <!-- logo -->
+                <div class="logo-2 mb-sm-4 mb-3">
+                    <h2><a href="{{url('/')}}">{{Config::get('website.webName')}}</a></h2>
                 </div>
-
-                <div class="mt-2 lg:pt-8">
-                    <h1 class="pl-3 text-xl border-b-[1px] border-white text-white">Useful Links</h1>
-                    <ul class="cursor-pointer text-base xl:text-sm mt-4">
-                        <li class="px-6 py-3 mt-2 text-[#666] bg-[#444] rounded-lg hover:bg-orange-600 hover:text-white transition ease-in-out duration-300">
-                            <i class="fa-solid fa-file-image text-lg"></i>
-                            <span class="px-3 font-medium">Company Profile</span>
-                        </li>
-                        <li class="px-6 py-3 mt-2 text-[#666] bg-[#444] rounded-lg hover:bg-orange-600 hover:text-white transition ease-in-out duration-300">
-                            <i class="fa-solid fa-file-image text-lg"></i>
-                            <span class="px-3 font-medium">Borang</span>
-                        </li>
-                        <li class="px-6 py-3 mt-2 text-[#666] bg-[#444] rounded-lg hover:bg-orange-600 hover:text-white transition ease-in-out duration-300">
-                            <i class="fa-solid fa-file-image text-lg"></i>
-                            <span class="px-3 font-medium">Website Portfolio</span>
-                        </li>
-                        <li class="px-6 py-3 mt-2 text-[#666] bg-[#444] rounded-lg hover:bg-orange-600 hover:text-white transition ease-in-out duration-300">
-                            <i class="fa-solid fa-file-image text-lg"></i>
-                            <span class="px-3 font-medium">System Portfolio</span>
-                        </li>
-                    </ul>
+                <!-- //logo -->
+                <p>{{Config::get('website.slogan')}}</p>
+            </div>
+            <div class="col-lg-3 col-sm-6 agileinfo_footer_grid mt-sm-0 mt-5">
+                <h4 class="mb-sm-5 mb-4">Sản phẩm nổi bật</h4>
+                <ul class="list-unstyled">
+                    <li><span class="fa fa-angle-double-right mr-2"></span> Whitening Remove Freckle Cream</li>
+                    <li><span class="fa fa-angle-double-right mr-2"></span> Repair Anti-Aging Cream</li>
+                    <li><span class="fa fa-angle-double-right mr-2"></span> Soothing balance repair cream</li>
+                    <li><span class="fa fa-angle-double-right mr-2"></span> Repairing active white serum</li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-sm-6 agileinfo_footer_grid pl-lg-0 mt-lg-0 mt-5">
+                <h4 class="mb-sm-5 mb-4">Bộ sưu tập</h4>
+                <div class="d-flex">
+                    @php
+                        $album1 = [
+                            "images/products/image_1_1.jpg",
+                            "images/products/image_1_2.jpg",
+                            "images/products/image_1_3.jpg",
+                        ]
+                    @endphp
+                    @foreach($album1 as $image)
+                        <div class="col-sm-4 col-3 agileinfo_footer_grid1">
+                            <a href="#">
+                                <img src="{{asset($image)}}" alt=" " class="img-fluid">
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
-
-                <div class="mt-2 lg:pt-8">
-                    <h1 class="pl-3 text-xl border-b-[1px] border-white text-white">What We Do</h1>
-                    <ul class="cursor-pointer text-base  mt-4">
-                        <li class="my-2 hover:text-white">Website & Portal Development</li>
-                        <li class="my-2 hover:text-white">System & Application Development</li>
-                        <li class="my-2 hover:text-white">Mobile Application Development</li>
-                        <li class="my-2 hover:text-white">Security Assessment</li>
-                        <li class="my-2 hover:text-white">Analytics & Business Intelligence</li>
-                        <li class="my-2 hover:text-white">Hardware & Software Supplies</li>
-                    </ul>
+                <div class="d-flex mt-2">
+                    @php
+                        $album1 = [
+                            "images/products/image_1_4.jpg",
+                            "images/products/image_1_5.jpg",
+                            "images/products/image_1_6.jpg",
+                        ]
+                    @endphp
+                    @foreach($album1 as $image)
+                        <div class="col-sm-4 col-3 agileinfo_footer_grid1">
+                            <a href="#">
+                                <img src="{{asset($image)}}" alt=" " class="img-fluid">
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
+            <div class="col-lg-3 col-sm-6 agileinfo_footer_grid mt-lg-0 mt-5">
+                <h4 class="mb-sm-5 mb-4">Địa chỉ</h4>
+                <ul class="list-unstyled">
+                    <li><span class="fa fa-map-marker mr-2"></span> {{Config::get('website.address')}}</li>
+                    <li>
+                        <span class="fa fa-envelope mr-2"></span>
+                        <a href="mailto:{{Config::get('website.email')}}">{{Config::get('website.email')}}</a>
+                    </li>
+                    <li>
+                        <span class="fa fa-phone mr-2"></span>{{Config::get('website.phone')}}</li>
+                    <li>
+                        <span class="fa fa-clock-o mr-2"></span>Hàng ngày 9:00-17:00</li>
+                </ul>
+            </div>
         </div>
-        <p class="py-10 text-center">© 2024 All rights reserved <span class="text-[#f53a03] ">Shinex</span></p>
+    </div>
+</footer>
+<!-- //footer -->
+
+<!-- footer last -->
+<div class="newsletter-main text-center py-md-5 py-4">
+    <div class="container">
+        <a href="{{url('/')}}" class="move-top text-center"></a>
+        <!-- newsletter -->
+        <div class="agileinfo_footer_grid mt-3">
+            <h4 class="mb-4"> Đăng ký nhận tin tức</h4>
+            <form action="#" method="post" class="newsletter">
+                <input class="email" type="email" name="email" placeholder=" Địa chỉ email của bạn..." required>
+                <button type="submit" class="btn"> Đăng ký </button>
+            </form>
+            <div class="clearfix"> </div>
+        </div>
+        <!-- //newsletter -->
+        <!-- copyright -->
+        <div class="w3agile_footer_copy mt-sm-5 mt-4">
+            <p>© 2024 Shinex. All rights reserved | Design by
+                <a href="{{url('/')}}">Shinex.</a>
+            </p>
+        </div>
+        <!-- //copyright -->
     </div>
 </div>
-
-
-
+<!-- //footer last -->
