@@ -19,90 +19,31 @@ class AdminProductController extends Controller
 
     public function index(): Factory|View|Application
     {
-        $cpus = Cpu::paginate(config("system.perPage"));
-        return view('admin.content.component.cpu.index', ["cpus" => $cpus]);
+        // Trả về view hiển thị danh sách sản phẩm
+
     }
     public function add(): Factory|View|Application
     {
-        return view("admin.content.component.cpu.add",[
-            "categories" => $this->getCategories(),
-            "brands" => $this->getBrands(),
-        ]);
+        // Trả ve view thêm sản phẩm
     }
 
-    private function fillDataToCpu($item, $input): void
+    public function store(Request $request)
     {
-        $item["socket"] = $input["socket"] ?? "";
-        $item["core_type"] = $input["core_type"] ?? "";
-        $item["core_series"] = $input["core_series"] ?? "";
-        $item->save();
-    }
-
-
-    public function store(Request $request): RedirectResponse
-    {
-        $input = $request->all();
-
-        // Create post
-        $post = new Post();
-        $this->fillDataToPost($post, $input);
-
-        // Create CPU
-        $cpu = new Cpu();
-        $this->fillDataToCpu($cpu, $input);
-
-        // Create Component
-        $component = new Component();
-        $input["detail_id"] = $cpu->id;
-        $this->fillDataToComponent($component, $input);
-
-        // Create product
-        $product = new Product();
-        $input["post_id"] = $post->id;
-        $input["detail_id"] = $component->id;
-        $this->fillDataToProduct($product, $input);
-
-        // Redirect to main board index page
-        return redirect()->route('admin.component.cpu.index');
+        // post them mới san pham
+        // redirect ve trang danh sach san pham
     }
     public function edit($id): Factory|View|Application
     {
-        $item = Cpu::find($id);
-        return view("admin.content.component.cpu.edit",[
-            "categories" => $this->getCategories(),
-            "brands" => $this->getBrands(),
-            "item" =>$item
-        ]);
+        // tra ve view edit san pham
     }
-    public function update($id, Request $request): RedirectResponse
+    public function update($id, Request $request)
     {
-        $input = $request->all();
-
-        // Update cpu
-        $cpu = Cpu::find($id);
-        $this->fillDataToCpu($cpu, $input);
-
-        // Update Component
-        $component = Component::find($cpu->component->id);
-        $this->fillDataToComponent($component, $input);
-
-        // Update product
-        $product = Product::find($cpu->component->product->id);
-        $this->fillDataToProduct($product, $input);
-
-        // Update Post
-        $post = Post::find($product->post_id);
-        $this->fillDataToPost($post, $input);
-
-        return redirect()->route('admin.component.cpu.index');
+        // post update san pham
+        // redirect ve trang danh sach san pham
     }
-    public function destroy($id): RedirectResponse
+    public function destroy($id)
     {
-        $item = Cpu::find($id);
-        $product = Product::find($item->component->product->id);
-        if ($product){
-            $product->delete();
-        }
-        return redirect()->route("admin.component.cpu.index");
+        // xoa san pham
+        // redirect ve trang danh sach san pham
     }
 }
