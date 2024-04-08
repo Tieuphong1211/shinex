@@ -20,6 +20,7 @@ class AdminProductController extends Controller
     public function index(): Factory|View|Application
     {
         // Trả về view hiển thị danh sách sản phẩm
+        return view('admin.content.product.index', ['page' => "product.index"]);
 
     }
     public function add(): Factory|View|Application
