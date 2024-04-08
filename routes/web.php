@@ -21,6 +21,10 @@ Route::get('/gallery', [App\Http\Controllers\HomeController::class, 'gallery'])-
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
 
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
 
 Route::middleware('guest:admin')->prefix('admin')->group( function () {
 
