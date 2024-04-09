@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
     <link rel="stylesheet" href="{{ asset('css/frontend-custom.css') }}">
     <!-- CSRF Token -->
     @yield('head')
@@ -27,7 +29,9 @@
                 @include('partial.adminHeader')
                 <div class="w-full h-full">
                     <div class="w-full h-full bg-white rounded-xl p-8">
-                        <div class="w-full h-full grid-cols-1 grid-rows-3">
+                        <!--content wrapper devided into 3 section-->
+                        <div class="w-full h-full flex flex-col gap-4">
+                            <!--First section-->
                             <div class="flex justify-between">
                                 <div class="page-index capitalize text-2xl">
                                     @isset($page)
@@ -48,15 +52,28 @@
                                         </button>
                                     </div>
                                     <div class="add-new-button">
-                                        <button class="flex justify-center items-center w-[100%] h-[100%] py-1 px-2 text-white bg-main-color rounded-md gap-1">
+                                        <button class="flex justify-center items-center w-[100%] h-[100%] py-1 px-2 text-white bg-main-color rounded-md gap-1" data-twe-toggle="modal" data-twe-target="#exampleModalVarying" data-twe-whatever="@mdo" data-twe-ripple-init data-twe-ripple-color="light">
                                             Thêm sản phẩm
                                             <i class="fa-solid fa-plus"></i>
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            @yield('content')
-                            @yield('product_index')
+                            <!--Second section-->
+                            <div>
+                                @yield('content')
+                                @yield('product_index')
+                                @include('admin.content.product.add')
+                            </div>
+                            <!--Third section-->
+                            <div class="flex justify-end gap-9">
+                                <button>Số dòng trên trang</button>
+                                <button>1-?? của tổng số ???</button>
+                                <div class="flex gap-5">
+                                    <button><</button>
+                                    <button>></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

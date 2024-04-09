@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use App\Models\product;
 use Illuminate\Http\Request;
@@ -20,7 +19,9 @@ class AdminProductController extends Controller
     public function index(): Factory|View|Application
     {
         // Trả về view hiển thị danh sách sản phẩm
-        return view('admin.content.product.index', ['page' => "product.index"]);
+        $products = product::all();
+
+        return view('admin.content.product.index', ['page' => "product.index", 'products' => $products]);
 
     }
     public function add(): Factory|View|Application
@@ -32,6 +33,17 @@ class AdminProductController extends Controller
     {
         // post them mới san pham
         // redirect ve trang danh sach san pham
+        $product = new product();
+        $product->name = $request->input('product-name');
+        $product->images = $request->input('file-path');
+        $product->slug = "default";
+        $product->description = $request->input('product-description');
+        $product->content = $request->input('product-content');
+
+        $product->save();
+        
+        return redirect()->back();
+        
     }
     public function edit($id): Factory|View|Application
     {
