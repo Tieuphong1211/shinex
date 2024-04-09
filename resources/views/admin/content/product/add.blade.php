@@ -40,7 +40,7 @@
                         <div class="flex gap-2">
                             <input type="url"
                             class="form-control relative m-0 -me-0.5 block w-full flex-auto rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-inset focus:outline-none dark:border-neutral-500 dark:bg-body-dark dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:autofill:shadow-autofill dark:focus:border-primary"
-                            id="thumbnail" name="file-path"/>
+                            id="thumbnail" name="file-path" readonly/>
                             <button id="lfm" data-input="thumbnail" data-preview="holder" class="add-image-file">
                                 <i class="fa-solid fa-upload"></i>
                             </button>
@@ -87,5 +87,4 @@
     $('#submit-button').click(function() {
         $('#add-product-form').submit();
     });
-
 </script>

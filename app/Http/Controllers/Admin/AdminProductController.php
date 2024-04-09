@@ -53,10 +53,27 @@ class AdminProductController extends Controller
     {
         // post update san pham
         // redirect ve trang danh sach san pham
+        $product = product::find($id);
+
+        $product->name = $request->input('edit-name');
+        $product->images = $request->input('file-path');
+        $product->description = $request->input('edit-description');
+        $product->content = $request->input('edit-content');
+
+        $product->save();
+
+        return redirect()->back();
+
     }
     public function destroy($id)
     {
         // xoa san pham
         // redirect ve trang danh sach san pham
+
+        $product = product::find($id);
+        $product->delete();
+
+        return redirect()->back();
+
     }
 }

@@ -63,7 +63,6 @@
                             <div>
                                 @yield('content')
                                 @yield('product_index')
-                                @include('admin.content.product.add')
                             </div>
                             <!--Third section-->
                             <div class="flex justify-end gap-9">
