@@ -19,7 +19,7 @@ class AdminProductController extends Controller
     public function index(): Factory|View|Application
     {
         // Trả về view hiển thị danh sách sản phẩm
-        $products = product::paginate(8);
+        $products = product::orderBy('created_at', 'desc')->paginate(8);
         $num_of_records = product::count();
 
         return view('admin.content.product.index', ['page' => "product.index", 'products' => $products, 'num_of_records' => $num_of_records]);
@@ -42,6 +42,8 @@ class AdminProductController extends Controller
         $product->content = $request->input('product-content');
 
         $product->save();
+
+        session()->flash('success', 'Thêm sản phẩm thành công!');
         
         return redirect()->back();
         
@@ -63,6 +65,8 @@ class AdminProductController extends Controller
 
         $product->save();
 
+        session()->flash('success', 'Cập nhật sản phẩm thành công!');
+
         return redirect()->back();
 
     }
@@ -73,6 +77,8 @@ class AdminProductController extends Controller
 
         $product = product::find($id);
         $product->delete();
+
+        session()->flash('success', 'Xóa sản phẩm thành công!');
 
         return redirect()->back();
 

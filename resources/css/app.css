@@ -15,6 +15,10 @@
 @tailwind components;
 @tailwind utilities;
 
+table{
+    @apply table-fixed 
+}
+
 p {
     @apply leading-[1.6];
     display: -webkit-box;
@@ -25,12 +29,20 @@ p {
 }
 
 th {
-    @apply p-2;
+    @apply p-2 min-w-28;
 }
 
 td{
     @apply p-2;
-    @apply overflow-hidden text-ellipsis whitespace-nowrap;
+    @apply overflow-hidden text-ellipsis whitespace-nowrap min-w-48;
+}
+
+.number-cell-size{
+    @apply max-w-20 min-w-1;
+}
+
+.text-cell-size{
+    @apply min-w-32 lg:min-w-60;
 }
 
 .button-hover{
