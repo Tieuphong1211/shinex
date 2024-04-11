@@ -65,14 +65,6 @@
                                 @yield('product_index')
                             </div>
                             <!--Third section-->
-                            <div class="flex justify-end gap-9">
-                                <button>Số dòng trên trang</button>
-                                <button>1-?? của tổng số ???</button>
-                                <div class="flex gap-5">
-                                    <button><</button>
-                                    <button>></button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

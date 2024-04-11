@@ -17,10 +17,11 @@
 
 p {
     @apply leading-[1.6];
-}
-
-table{
-    table-layout: fixed;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 th {

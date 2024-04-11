@@ -19,9 +19,10 @@ class AdminProductController extends Controller
     public function index(): Factory|View|Application
     {
         // Trả về view hiển thị danh sách sản phẩm
-        $products = product::all();
+        $products = product::paginate(8);
+        $num_of_records = product::count();
 
-        return view('admin.content.product.index', ['page' => "product.index", 'products' => $products]);
+        return view('admin.content.product.index', ['page' => "product.index", 'products' => $products, 'num_of_records' => $num_of_records]);
 
     }
     public function add(): Factory|View|Application
