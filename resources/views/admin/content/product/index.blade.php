@@ -1,6 +1,37 @@
 @extends('layouts.adminLayout')
+@section('subTitle')
+    Quản lý sản phẩm
+@endsection
+@section('content')
+    <!--First section-->
+    <div class="flex justify-between">
+        <div class="page-index capitalize text-2xl">
+            <span class="font-bold">Quản lý sản phẩm</span>
+        </div>
+        <div class="flex gap-2">
+            <div class="search">
+                <div class="searchbar-wrapper border-gray-300 border-2 bg-slate-100 py-1 px-2 rounded-md">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <label>
+                        <input class="bg-transparent focus:outline-none ml-1" type="text" placeholder="Tìm kiếm">
+                    </label>
+                </div>
+            </div>
+            <div class="filter-button ">
+                <button class="flex justify-center items-center w-[100%] h-[100%] py-1 px-2 border-gray-300 border-2 rounded-md gap-1">
+                    Filter
+                    <i class="fa-solid fa-filter"></i>
+                </button>
+            </div>
+            <div class="add-new-button">
+                <button class="flex justify-center items-center w-[100%] h-[100%] py-1 px-2 text-white bg-main-color rounded-md gap-1" data-twe-toggle="modal" data-twe-target="#exampleModalVarying" data-twe-whatever="@mdo" data-twe-ripple-init data-twe-ripple-color="light">
+                    Thêm sản phẩm
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 
-@section('product_index')
     @if(session('success'))
         <div id="alert-3"
             class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
@@ -26,99 +57,77 @@
         </div>
     @endif
 
-    <div class="flex flex-col overflow-x-auto">
-        <div class="sm:-mx-6 lg:-mx-8">
-            <div class="inline-block min-w-full py-2 sm:pl-6 lg:pl-8">
-                <div class="overflow-x-auto">
-                    <table class="min-w-full text-start text-sm font-light text-surface dark:text-white">
-                        <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
-                            <tr class="bg-slate-200">
-                                <th scope="col" class="number-cell-size">#</th>
-                                <th scope="col" class="number-cell-size">id</th>
-                                <th scope="col" class="min-w-[5rem]">Hình ảnh</th>
-                                <th scope="col">Tên sản phẩm</th>
-                                <th scope="col">Miêu tả</th>
-                                <th scope="col">Nội dung</th>
-                                <th scope="col">Ngày tạo</th>
-                                <th scope="col">Sửa lần cuối</th>
-                                <th scope="col">Hành động</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($products as $product)
-                                @php
-                                    $ordinalNumber =
-                                        $products->perPage() * ($products->currentPage() - 1) + $loop->iteration;
-                                    $firstOrdinalNumber = $products->perPage() * ($products->currentPage() - 1) + 1;
-                                    $lastOrdinalNumber = $products->perPage() * $products->currentPage();
-                                    if ($lastOrdinalNumber > $products->total()) {
-                                        $lastOrdinalNumber = $products->total();
-                                    }
-                                @endphp
-                                <tr class="border-b border-neutral-200 dark:border-white/10">
-                                    <td class="whitespace-nowrap font-medium number-cell-size"> {{ $ordinalNumber++ }}</td>
-                                    <td class="whitespace-nowrap number-cell-size">
-                                        {{ $product->id }}
-                                    </td>
-                                    <td class="whitespace-nowrap ">
-                                        <div class="flex justify-center items-center">
-                                            <img src="{{ $product->images }}" class="w-16 h-16" alt="">
-                                        </div>
-                                    </td>
-                                    <td class="text-left align-top max-h-5 max-w-2xl whitespace-normal overflow-y-auto">
-                                        <p class="text-left align-top max-h-20">
-                                            {{ $product->name }}
-                                        </p>
-                                    </td>
-                                    <td class="text-left align-top max-h-5 whitespace-normal overflow-y-auto text-cell-size">
-                                        <p class="text-left align-top max-w-[100%] max-h-20">
-                                            {{ $product->description }}
-                                        </p>
-                                    </td>
-                                    <td class="text-left align-top max-h-5 max-w-2xl whitespace-normal overflow-y-auto text-cell-size">
-                                        <p class="text-left align-top max-w-[100%] max-h-20">
-                                            {{ $product->content }}
-                                        </p>
-                                    </td>
-                                    <td class="text-left align-top max-h-5 max-w-2xl whitespace-normal overflow-y-auto">
-                                        <p class="text-left align-top max-w-[100%] max-h-20">
-                                            {{ $product->created_at }}
-                                        </p>
-                                    </td>
-                                    <td class="text-left align-top max-h-5 max-w-2xl whitespace-normal overflow-y-auto">
-                                        <p class="text-left align-top max-w-[100%] max-h-20">
-                                            {{ $product->updated_at }}
-                                        </p>
-                                    </td>
-                                    <td class="whitespace-nowrap ">
-                                        <div class="flex justify-center items-center gap-2">
-                                            <button class="button-hover edit-button" data-twe-toggle="modal"
-                                                data-twe-target="#editModal" data-twe-ripple-init
-                                                data-twe-ripple-color="light"
-                                                data-values='{"id": "{{ $product->id }}", "name": "{{ $product->name }}", "image": "{{ $product->images }}", "description": "{{ $product->description }}", "content": "{{ $product->content }}" }'>
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </button>
-                                            <button class="button-hover delete-button" data-twe-toggle="modal"
-                                                data-product-id="{{ $product->id }}"
-                                                data-product-name="{{ $product->name }}" data-twe-target="#staticBackdrop"
-                                                data-twe-ripple-init data-twe-ripple-color="light">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+    <!-- Product table-->
+    <div class="w-full mt-4">
+        <table class="table-auto w-full max-w-full">
+            <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
+                <tr class="bg-slate-200">
+                    <th  class="number-cell-size"> #</th>
+                    <th> Hình ảnh</th>
+                    <th> Tên sản phẩm</th>
+                    <th> Slug</th>
+                    <th> Miêu tả</th>
+                    <th> Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($products as $product)
+                    <tr class="border-b border-neutral-200 dark:border-white/10">
+                        <td class="bg-blue-400 number-cell-size" >
+                            {{ $products->perPage() * ($products->currentPage() - 1) + $loop->index +1 }}
+                        </td>
+                        <td>
+                            <div class="flex justify-center items-center">
+                                <img src="{{ $product->images }}" class="w-16 h-16" alt="">
+                                <img src="{{ $product->images }}" class="w-16 h-16" alt="">
+                                <img src="{{ $product->images }}" class="w-16 h-16" alt="">
+                                <img src="{{ $product->images }}" class="w-16 h-16" alt="">
+                            </div>
+                        </td>
+                        <td class="text-left align-middle whitespace-normal">
+                            <p class="text-left align-top">
+                                {{ $product->name }}
+                            </p>
+                        </td>
+                        <td class="text-left align-middle whitespace-normal">
+                            <p class="text-left align-top">
+                                {{ $product->slug }}
+                            </p>
+                        </td>
+                        <td class="text-left align-middle whitespace-normal">
+                            <p class="text-left align-top max-w-[100%]">
+                                {{ $product->description }}
+                            </p>
+                        </td>
+                        <td class="whitespace-nowrap">
+                            <div class="flex justify-center items-center gap-2">
+                                <button class="button-hover edit-button" data-twe-toggle="modal"
+                                        data-twe-target="#editModal" data-twe-ripple-init
+                                        data-twe-ripple-color="light"
+                                        data-values='{"id": "{{ $product->id }}", "name": "{{ $product->name }}", "image": "{{ $product->images }}", "description": "{{ $product->description }}", "content": "{{ $product->content }}" }'>
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <button class="button-hover delete-button" data-twe-toggle="modal"
+                                        data-product-id="{{ $product->id }}"
+                                        data-product-name="{{ $product->name }}" data-twe-target="#staticBackdrop"
+                                        data-twe-ripple-init data-twe-ripple-color="light">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 
     <div class="flex justify-end gap-9 pt-2">
-        <button>Số dòng trên trang: <strong>8</strong></button>
-        <button><span class="font-bold">{{ $firstOrdinalNumber }} - {{ $lastOrdinalNumber }}</span> của tổng số
-            <strong>{{ $num_of_records }}</strong></button>
+        <button>
+            <span class="font-bold">
+                {{ $products->perPage() * ($products->currentPage() - 1) + 1 }} - {{ $products->perPage() * $products->currentPage() }}
+            </span> của tổng số
+            <strong>{{ $products->total() }}</strong>
+        </button>
         {{ $products->links('vendor/pagination/tailwind') }}
     </div>
 
@@ -127,7 +136,7 @@
     @include('admin.content.product.edit')
 
     <script>
-        var modalBody = document.getElementById("modal-body");
+        const modalBody = document.getElementById("modal-body");
 
         $(".delete-button").click(function() {
 
@@ -154,7 +163,6 @@
             $('#edit-content').val(productObject.content)
 
             $("#edit-product-form").attr('action', '/admin/product/edit/' + productObject.id);
-
         })
     </script>
 @endsection

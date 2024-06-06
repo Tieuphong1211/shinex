@@ -31,38 +31,9 @@
                     <div class="w-full h-full bg-white rounded-xl p-8">
                         <!--content wrapper devided into 3 section-->
                         <div class="w-full h-full flex flex-col gap-4">
-                            <!--First section-->
-                            <div class="flex justify-between">
-                                <div class="page-index capitalize text-2xl">
-                                    @isset($page)
-                                        {{ $page }}
-                                    @endisset
-                                </div>
-                                <div class="flex gap-2">
-                                    <div class="search">
-                                        <div class="searchbar-wrapper border-gray-300 border-2 bg-slate-100 py-1 px-2 rounded-md">
-                                            <i class="fa-solid fa-magnifying-glass"></i>
-                                            <input class="bg-transparent focus:outline-none ml-1" type="text" placeholder="Tìm kiếm">
-                                        </div>
-                                    </div>
-                                    <div class="filter-button ">
-                                        <button class="flex justify-center items-center w-[100%] h-[100%] py-1 px-2 border-gray-300 border-2 rounded-md gap-1">
-                                            Filter
-                                            <i class="fa-solid fa-filter"></i>
-                                        </button>
-                                    </div>
-                                    <div class="add-new-button">
-                                        <button class="flex justify-center items-center w-[100%] h-[100%] py-1 px-2 text-white bg-main-color rounded-md gap-1" data-twe-toggle="modal" data-twe-target="#exampleModalVarying" data-twe-whatever="@mdo" data-twe-ripple-init data-twe-ripple-color="light">
-                                            Thêm sản phẩm
-                                            <i class="fa-solid fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
                             <!--Second section-->
                             <div>
                                 @yield('content')
-                                @yield('product_index')
                             </div>
                             <!--Third section-->
                         </div>

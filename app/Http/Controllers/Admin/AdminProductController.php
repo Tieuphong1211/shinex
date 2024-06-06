@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-use App\Models\product;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Foundation\Application;
@@ -11,30 +11,28 @@ use Illuminate\Contracts\View\View;
 
 class AdminProductController extends Controller
 {
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth:admin');
     }
 
     public function index(): Factory|View|Application
     {
-        // Trả về view hiển thị danh sách sản phẩm
-        $products = product::orderBy('created_at', 'desc')->paginate(8);
-        $num_of_records = product::count();
+        $products = Product::orderBy('updated_at', 'desc')->paginate(3);
+        $num_of_records = Product::count();
 
-        return view('admin.content.product.index', ['page' => "product.index", 'products' => $products, 'num_of_records' => $num_of_records]);
+        return view('admin.content.product.index', [
+            'page' => "product.index",
+            'products' => $products,
+            'num_of_records' => $num_of_records
+        ]);
 
-    }
-    public function add(): Factory|View|Application
-    {
-        // Trả ve view thêm sản phẩm
     }
 
     public function store(Request $request)
     {
         // post them mới san pham
         // redirect ve trang danh sach san pham
-        $product = new product();
+        $product = new Product();
         $product->name = $request->input('product-name');
         $product->images = $request->input('file-path');
         $product->slug = "default";
@@ -44,19 +42,16 @@ class AdminProductController extends Controller
         $product->save();
 
         session()->flash('success', 'Thêm sản phẩm thành công!');
-        
+
         return redirect()->back();
-        
+
     }
-    public function edit($id): Factory|View|Application
-    {
-        // tra ve view edit san pham
-    }
-    public function update($id, Request $request)
+
+    public function update($id, Request $request): \Illuminate\Http\RedirectResponse
     {
         // post update san pham
         // redirect ve trang danh sach san pham
-        $product = product::find($id);
+        $product = Product::find($id);
 
         $product->name = $request->input('edit-name');
         $product->images = $request->input('file-path');
@@ -70,12 +65,13 @@ class AdminProductController extends Controller
         return redirect()->back();
 
     }
+
     public function destroy($id)
     {
         // xoa san pham
         // redirect ve trang danh sach san pham
 
-        $product = product::find($id);
+        $product = Product::find($id);
         $product->delete();
 
         session()->flash('success', 'Xóa sản phẩm thành công!');
